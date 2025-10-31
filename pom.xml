@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.cyborgcode.utilities</groupId>
+        <artifactId>parent-pom</artifactId>
+        <version>1.2.6</version>
+    </parent>
+
+    <groupId>io.cyborgcode.roa.plugins</groupId>
+    <artifactId>plugins</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>Ring of Automation Plugins</name>
+    <modules>
+        <module>text-allocator-maven-plugin</module>
+    </modules>
+
+    <properties>
+        <github.repo.name>roa-libraries</github.repo.name>
+        <utilities.version>1.2.6</utilities.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <shared-static-data.version>${utilities.version}</shared-static-data.version>
+        <enforcer.skipRules>reactorModuleConvergence</enforcer.skipRules>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>github-utilities</id>
+            <name>GitHub Packages for Utilities</name>
+            <url>https://maven.pkg.github.com/CyborgCodeSyndicate/utilities</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+</project>
