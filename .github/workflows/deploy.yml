@@ -31,7 +31,7 @@ jobs:
         with:
           server_ids: github-roa-plugins
           version_bump: ${{ inputs.version_bump || 'none' }}
-          deploy_server_id: github-roa-libraries
+          deploy_server_id: github-roa-plugins
           modules: ${{ inputs.modules }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           github_packages_user: ${{ secrets.GH_PACKAGES_USER }}
