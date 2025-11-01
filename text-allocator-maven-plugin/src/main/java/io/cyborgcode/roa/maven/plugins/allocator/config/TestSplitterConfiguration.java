@@ -1,9 +1,9 @@
 package io.cyborgcode.roa.maven.plugins.allocator.config;
 
 import java.io.File;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import org.apache.maven.project.MavenProject;
 
 /**
@@ -23,8 +23,8 @@ import org.apache.maven.project.MavenProject;
  *
  * @author Cyborg Code Syndicate 💍👨💻
  */
-@AllArgsConstructor
 @Getter
+@SuperBuilder
 public class TestSplitterConfiguration {
 
    /**

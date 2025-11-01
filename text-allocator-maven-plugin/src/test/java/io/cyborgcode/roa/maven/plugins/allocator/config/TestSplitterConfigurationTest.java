@@ -42,16 +42,16 @@ class TestSplitterConfigurationTest {
          int maxNumberOfParallelRunners = 10;
 
          // Act
-         TestSplitterConfiguration config = new TestSplitterConfiguration(
-               enabled,
-               maxMethodsPerBucket,
-               testOutputDirectory,
-               mavenProject,
-               jsonOutputFile,
-               projectRoot,
-               parallelMethods,
-               maxNumberOfParallelRunners
-         );
+         TestSplitterConfiguration config = TestSplitterConfiguration.builder()
+               .enabled(enabled)
+               .maxMethodsPerBucket(maxMethodsPerBucket)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile(jsonOutputFile)
+               .projectRoot(projectRoot)
+               .parallelMethods(parallelMethods)
+               .maxNumberOfParallelRunners(maxNumberOfParallelRunners)
+               .build();
 
          // Assert
          assertNotNull(config, "Configuration should not be null");
@@ -72,16 +72,16 @@ class TestSplitterConfigurationTest {
          boolean enabled = false;
 
          // Act
-         TestSplitterConfiguration config = new TestSplitterConfiguration(
-               enabled,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               false,
-               5
-         );
+         TestSplitterConfiguration config = TestSplitterConfiguration.builder()
+               .enabled(enabled)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(false)
+               .maxNumberOfParallelRunners(5)
+               .build();
 
          // Assert
          assertFalse(config.isEnabled(), "Enabled should be false");
@@ -94,16 +94,16 @@ class TestSplitterConfigurationTest {
          boolean parallelMethods = false;
 
          // Act
-         TestSplitterConfiguration config = new TestSplitterConfiguration(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               parallelMethods,
-               5
-         );
+         TestSplitterConfiguration config = TestSplitterConfiguration.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(parallelMethods)
+               .maxNumberOfParallelRunners(5)
+               .build();
 
          // Assert
          assertFalse(config.isParallelMethods(), "Parallel methods should be false");
@@ -113,16 +113,16 @@ class TestSplitterConfigurationTest {
       @DisplayName("Should create configuration with minimum values")
       void shouldCreateConfigurationWithMinimumValues() {
          // Act
-         TestSplitterConfiguration config = new TestSplitterConfiguration(
-               false,
-               1,
-               testOutputDirectory,
-               mavenProject,
-               "min",
-               "/",
-               false,
-               1
-         );
+         TestSplitterConfiguration config = TestSplitterConfiguration.builder()
+               .enabled(false)
+               .maxMethodsPerBucket(1)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("min")
+               .projectRoot("/")
+               .parallelMethods(false)
+               .maxNumberOfParallelRunners(1)
+               .build();
 
          // Assert
          assertEquals(1, config.getMaxMethodsPerBucket(), "Should accept minimum bucket size");
@@ -133,16 +133,16 @@ class TestSplitterConfigurationTest {
       @DisplayName("Should create configuration with large values")
       void shouldCreateConfigurationWithLargeValues() {
          // Act
-         TestSplitterConfiguration config = new TestSplitterConfiguration(
-               true,
-               10000,
-               testOutputDirectory,
-               mavenProject,
-               "large-output",
-               "/very/long/project/root/path",
-               true,
-               1000
-         );
+         TestSplitterConfiguration config = TestSplitterConfiguration.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(10000)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("large-output")
+               .projectRoot("/very/long/project/root/path")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(1000)
+               .build();
 
          // Assert
          assertEquals(10000, config.getMaxMethodsPerBucket(), "Should accept large bucket size");
@@ -156,16 +156,16 @@ class TestSplitterConfigurationTest {
          String projectRoot = "/home/user/projects/my-project";
 
          // Act
-         TestSplitterConfiguration config = new TestSplitterConfiguration(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               projectRoot,
-               true,
-               5
-         );
+         TestSplitterConfiguration config = TestSplitterConfiguration.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot(projectRoot)
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .build();
 
          // Assert
          assertEquals(projectRoot, config.getProjectRoot(), "Project root should be preserved exactly");
@@ -178,16 +178,16 @@ class TestSplitterConfigurationTest {
          String jsonOutputFile = "custom-test-results";
 
          // Act
-         TestSplitterConfiguration config = new TestSplitterConfiguration(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               jsonOutputFile,
-               "/root",
-               true,
-               5
-         );
+         TestSplitterConfiguration config = TestSplitterConfiguration.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile(jsonOutputFile)
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .build();
 
          // Assert
          assertEquals(jsonOutputFile, config.getJsonOutputFile(), "JSON output file should be preserved exactly");
@@ -200,16 +200,16 @@ class TestSplitterConfigurationTest {
          String projectRoot = "C:\\Users\\Developer\\Projects\\MyProject";
 
          // Act
-         TestSplitterConfiguration config = new TestSplitterConfiguration(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               projectRoot,
-               true,
-               5
-         );
+         TestSplitterConfiguration config = TestSplitterConfiguration.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot(projectRoot)
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .build();
 
          // Assert
          assertEquals(projectRoot, config.getProjectRoot(), "Should handle Windows paths");
@@ -219,16 +219,16 @@ class TestSplitterConfigurationTest {
       @DisplayName("Should create configuration with zero max methods per bucket")
       void shouldCreateConfigurationWithZeroMaxMethodsPerBucket() {
          // Act
-         TestSplitterConfiguration config = new TestSplitterConfiguration(
-               true,
-               0,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5
-         );
+         TestSplitterConfiguration config = TestSplitterConfiguration.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(0)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .build();
 
          // Assert
          assertEquals(0, config.getMaxMethodsPerBucket(), "Should accept zero max methods");
@@ -238,22 +238,22 @@ class TestSplitterConfigurationTest {
       @DisplayName("Should allow modification of maxNumberOfParallelRunners")
       void shouldAllowModificationOfMaxNumberOfParallelRunners() {
          // Arrange
-         TestSplitterConfiguration config = new TestSplitterConfiguration(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5
-         );
+         TestSplitterConfiguration config = TestSplitterConfiguration.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .build();
 
          // Act
          config.setMaxNumberOfParallelRunners(15);
 
          // Assert
-         assertEquals(15, config.getMaxNumberOfParallelRunners(), 
+         assertEquals(15, config.getMaxNumberOfParallelRunners(),
                "Should update maxNumberOfParallelRunners");
       }
    }

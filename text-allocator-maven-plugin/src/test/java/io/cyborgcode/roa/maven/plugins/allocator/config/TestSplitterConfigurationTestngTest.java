@@ -37,17 +37,17 @@ class TestSplitterConfigurationTestngTest {
          Set<String> suites = Set.of("smoke-suite", "integration-suite");
 
          // Act
-         TestSplitterConfigurationTestng config = new TestSplitterConfigurationTestng(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               suites
-         );
+         TestSplitterConfigurationTestng config = TestSplitterConfigurationTestng.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .suites(suites)
+               .build();
 
          // Assert
          assertNotNull(config, "Configuration should not be null");
@@ -63,17 +63,17 @@ class TestSplitterConfigurationTestngTest {
          Set<String> suites = Collections.emptySet();
 
          // Act
-         TestSplitterConfigurationTestng config = new TestSplitterConfigurationTestng(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               suites
-         );
+         TestSplitterConfigurationTestng config = TestSplitterConfigurationTestng.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .suites(suites)
+               .build();
 
          // Assert
          assertNotNull(config.getSuites(), "Suites should not be null");
@@ -87,17 +87,17 @@ class TestSplitterConfigurationTestngTest {
          Set<String> suites = Set.of("regression-suite");
 
          // Act
-         TestSplitterConfigurationTestng config = new TestSplitterConfigurationTestng(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               suites
-         );
+         TestSplitterConfigurationTestng config = TestSplitterConfigurationTestng.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .suites(suites)
+               .build();
 
          // Assert
          assertEquals(1, config.getSuites().size(), "Should have one suite");
@@ -111,17 +111,17 @@ class TestSplitterConfigurationTestngTest {
          Set<String> suites = Set.of("smoke-suite");
 
          // Act
-         TestSplitterConfigurationTestng config = new TestSplitterConfigurationTestng(
-               true,
-               50,
-               testOutputDirectory,
-               mavenProject,
-               "testng-output",
-               "/project/root",
-               false,
-               10,
-               suites
-         );
+         TestSplitterConfigurationTestng config = TestSplitterConfigurationTestng.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(50)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("testng-output")
+               .projectRoot("/project/root")
+               .parallelMethods(false)
+               .maxNumberOfParallelRunners(10)
+               .suites(suites)
+               .build();
 
          // Assert
          assertTrue(config.isEnabled());
@@ -141,17 +141,17 @@ class TestSplitterConfigurationTestngTest {
          Set<String> suites = Set.of("smoke", "integration", "regression", "e2e", "performance");
 
          // Act
-         TestSplitterConfigurationTestng config = new TestSplitterConfigurationTestng(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               suites
-         );
+         TestSplitterConfigurationTestng config = TestSplitterConfigurationTestng.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .suites(suites)
+               .build();
 
          // Assert
          assertEquals(5, config.getSuites().size(), "Should have 5 suites");
@@ -169,17 +169,17 @@ class TestSplitterConfigurationTestngTest {
          Set<String> suites = Set.of("SmokeSuite", "INTEGRATION", "regression");
 
          // Act
-         TestSplitterConfigurationTestng config = new TestSplitterConfigurationTestng(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               suites
-         );
+         TestSplitterConfigurationTestng config = TestSplitterConfigurationTestng.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .suites(suites)
+               .build();
 
          // Assert
          assertTrue(config.getSuites().contains("SmokeSuite"), "Should preserve 'SmokeSuite'");
@@ -194,17 +194,17 @@ class TestSplitterConfigurationTestngTest {
          Set<String> suites = Set.of("smoke-suite", "integration_suite", "suite.e2e");
 
          // Act
-         TestSplitterConfigurationTestng config = new TestSplitterConfigurationTestng(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               suites
-         );
+         TestSplitterConfigurationTestng config = TestSplitterConfigurationTestng.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .suites(suites)
+               .build();
 
          // Assert
          assertTrue(config.getSuites().contains("smoke-suite"));
@@ -219,17 +219,17 @@ class TestSplitterConfigurationTestngTest {
          Set<String> suites = Set.of("Smoke Suite", "Integration Test Suite");
 
          // Act
-         TestSplitterConfigurationTestng config = new TestSplitterConfigurationTestng(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               suites
-         );
+         TestSplitterConfigurationTestng config = TestSplitterConfigurationTestng.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .suites(suites)
+               .build();
 
          // Assert
          assertTrue(config.getSuites().contains("Smoke Suite"));
@@ -244,17 +244,17 @@ class TestSplitterConfigurationTestngTest {
          Set<String> suites = Set.of(longSuiteName);
 
          // Act
-         TestSplitterConfigurationTestng config = new TestSplitterConfigurationTestng(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               suites
-         );
+         TestSplitterConfigurationTestng config = TestSplitterConfigurationTestng.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .suites(suites)
+               .build();
 
          // Assert
          assertTrue(config.getSuites().contains(longSuiteName), "Should handle long suite names");
@@ -267,17 +267,17 @@ class TestSplitterConfigurationTestngTest {
          Set<String> suites = Set.of("smoke-suite");
 
          // Act
-         TestSplitterConfigurationTestng config = new TestSplitterConfigurationTestng(
-               false,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               suites
-         );
+         TestSplitterConfigurationTestng config = TestSplitterConfigurationTestng.builder()
+               .enabled(false)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .suites(suites)
+               .build();
 
          // Assert
          assertTrue(!config.isEnabled(), "Should be disabled");
