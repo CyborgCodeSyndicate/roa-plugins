@@ -39,18 +39,18 @@ class TestSplitterConfigurationJunitTest {
          Set<String> excludeTags = Set.of("slow", "flaky");
 
          // Act
-         TestSplitterConfigurationJunit config = new TestSplitterConfigurationJunit(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               includeTags,
-               excludeTags
-         );
+         TestSplitterConfigurationJunit config = TestSplitterConfigurationJunit.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .includeTags(includeTags)
+               .excludeTags(excludeTags)
+               .build();
 
          // Assert
          assertNotNull(config, "Configuration should not be null");
@@ -68,18 +68,18 @@ class TestSplitterConfigurationJunitTest {
          Set<String> excludeTags = Set.of("slow");
 
          // Act
-         TestSplitterConfigurationJunit config = new TestSplitterConfigurationJunit(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               includeTags,
-               excludeTags
-         );
+         TestSplitterConfigurationJunit config = TestSplitterConfigurationJunit.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .includeTags(includeTags)
+               .excludeTags(excludeTags)
+               .build();
 
          // Assert
          assertNotNull(config.getIncludeTags(), "Include tags should not be null");
@@ -95,18 +95,18 @@ class TestSplitterConfigurationJunitTest {
          Set<String> excludeTags = Collections.emptySet();
 
          // Act
-         TestSplitterConfigurationJunit config = new TestSplitterConfigurationJunit(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               includeTags,
-               excludeTags
-         );
+         TestSplitterConfigurationJunit config = TestSplitterConfigurationJunit.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .includeTags(includeTags)
+               .excludeTags(excludeTags)
+               .build();
 
          // Assert
          assertNotNull(config.getExcludeTags(), "Exclude tags should not be null");
@@ -122,18 +122,18 @@ class TestSplitterConfigurationJunitTest {
          Set<String> excludeTags = Collections.emptySet();
 
          // Act
-         TestSplitterConfigurationJunit config = new TestSplitterConfigurationJunit(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               includeTags,
-               excludeTags
-         );
+         TestSplitterConfigurationJunit config = TestSplitterConfigurationJunit.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .includeTags(includeTags)
+               .excludeTags(excludeTags)
+               .build();
 
          // Assert
          assertTrue(config.getIncludeTags().isEmpty(), "Include tags should be empty");
@@ -148,18 +148,18 @@ class TestSplitterConfigurationJunitTest {
          Set<String> excludeTags = Set.of("slow");
 
          // Act
-         TestSplitterConfigurationJunit config = new TestSplitterConfigurationJunit(
-               true,
-               50,
-               testOutputDirectory,
-               mavenProject,
-               "junit-output",
-               "/project/root",
-               false,
-               10,
-               includeTags,
-               excludeTags
-         );
+         TestSplitterConfigurationJunit config = TestSplitterConfigurationJunit.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(50)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("junit-output")
+               .projectRoot("/project/root")
+               .parallelMethods(false)
+               .maxNumberOfParallelRunners(10)
+               .includeTags(includeTags)
+               .excludeTags(excludeTags)
+               .build();
 
          // Assert
          assertTrue(config.isEnabled());
@@ -180,18 +180,18 @@ class TestSplitterConfigurationJunitTest {
          Set<String> excludeTags = Set.of("slow");
 
          // Act
-         TestSplitterConfigurationJunit config = new TestSplitterConfigurationJunit(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               includeTags,
-               excludeTags
-         );
+         TestSplitterConfigurationJunit config = TestSplitterConfigurationJunit.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .includeTags(includeTags)
+               .excludeTags(excludeTags)
+               .build();
 
          // Assert
          assertEquals(4, config.getIncludeTags().size(), "Should have 4 include tags");
@@ -209,18 +209,18 @@ class TestSplitterConfigurationJunitTest {
          Set<String> excludeTags = Set.of("slow", "flaky", "manual", "wip");
 
          // Act
-         TestSplitterConfigurationJunit config = new TestSplitterConfigurationJunit(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               includeTags,
-               excludeTags
-         );
+         TestSplitterConfigurationJunit config = TestSplitterConfigurationJunit.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .includeTags(includeTags)
+               .excludeTags(excludeTags)
+               .build();
 
          // Assert
          assertEquals(4, config.getExcludeTags().size(), "Should have 4 exclude tags");
@@ -238,18 +238,18 @@ class TestSplitterConfigurationJunitTest {
          Set<String> excludeTags = Set.of("SLOW", "Flaky");
 
          // Act
-         TestSplitterConfigurationJunit config = new TestSplitterConfigurationJunit(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               includeTags,
-               excludeTags
-         );
+         TestSplitterConfigurationJunit config = TestSplitterConfigurationJunit.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .includeTags(includeTags)
+               .excludeTags(excludeTags)
+               .build();
 
          // Assert
          assertTrue(config.getIncludeTags().contains("Smoke"), "Should preserve 'Smoke'");
@@ -266,18 +266,18 @@ class TestSplitterConfigurationJunitTest {
          Set<String> excludeTags = Set.of("slow-running", "known_issue");
 
          // Act
-         TestSplitterConfigurationJunit config = new TestSplitterConfigurationJunit(
-               true,
-               20,
-               testOutputDirectory,
-               mavenProject,
-               "output",
-               "/root",
-               true,
-               5,
-               includeTags,
-               excludeTags
-         );
+         TestSplitterConfigurationJunit config = TestSplitterConfigurationJunit.builder()
+               .enabled(true)
+               .maxMethodsPerBucket(20)
+               .testOutputDirectory(testOutputDirectory)
+               .mavenProject(mavenProject)
+               .jsonOutputFile("output")
+               .projectRoot("/root")
+               .parallelMethods(true)
+               .maxNumberOfParallelRunners(5)
+               .includeTags(includeTags)
+               .excludeTags(excludeTags)
+               .build();
 
          // Assert
          assertTrue(config.getIncludeTags().contains("smoke-test"));

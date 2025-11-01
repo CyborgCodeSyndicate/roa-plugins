@@ -139,18 +139,32 @@ public class TestAllocatorMojo extends AbstractMojo {
       TestSplitterConfiguration config;
       TestAllocatorService service = switch (testEngine.toLowerCase()) {
          case "junit" -> {
-            config = new TestSplitterConfigurationJunit(
-                  enabled, maxMethods, testOutputDir, project, outputJsonFile,
-                  projectBaseDir.getAbsolutePath(), parallelMethods, maxNumberOfParallelRunners,
-                  parseInput(tagsInclude), parseInput(tagsExclude)
-            );
+            config = TestSplitterConfigurationJunit.builder()
+                  .enabled(enabled)
+                  .maxMethodsPerBucket(maxMethods)
+                  .testOutputDirectory(testOutputDir)
+                  .mavenProject(project)
+                  .jsonOutputFile(outputJsonFile)
+                  .projectRoot(projectBaseDir.getAbsolutePath())
+                  .parallelMethods(parallelMethods)
+                  .maxNumberOfParallelRunners(maxNumberOfParallelRunners)
+                  .includeTags(parseInput(tagsInclude))
+                  .excludeTags(parseInput(tagsExclude))
+                  .build();
             yield new JunitAllocatorService(getLog());
          }
          case "testng" -> {
-            config = new TestSplitterConfigurationTestng(
-                  enabled, maxMethods, testOutputDir, project, outputJsonFile,
-                  projectBaseDir.getAbsolutePath(), this.parallelMethods, maxNumberOfParallelRunners, parseInput(suites)
-            );
+            config = TestSplitterConfigurationTestng.builder()
+                  .enabled(enabled)
+                  .maxMethodsPerBucket(maxMethods)
+                  .testOutputDirectory(testOutputDir)
+                  .mavenProject(project)
+                  .jsonOutputFile(outputJsonFile)
+                  .projectRoot(projectBaseDir.getAbsolutePath())
+                  .parallelMethods(parallelMethods)
+                  .maxNumberOfParallelRunners(maxNumberOfParallelRunners)
+                  .suites(parseInput(suites))
+                  .build();
             yield new TestNgAllocatorService(getLog());
          }
          default -> throw new IllegalArgumentException(
