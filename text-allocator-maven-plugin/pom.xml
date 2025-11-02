@@ -11,6 +11,8 @@
     </parent>
 
     <artifactId>text-allocator-maven-plugin</artifactId>
+    <packaging>maven-plugin</packaging>
+    <name>ROA Test Allocator Maven Plugin</name>
 
     <dependencies>
         <dependency>
@@ -83,6 +85,27 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>${maven-plugin.version}</version>
+                <configuration>
+                    <goalPrefix>test-splitter</goalPrefix>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-descriptor</id>
+                        <goals>
+                            <goal>descriptor</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
