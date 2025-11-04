@@ -12,7 +12,7 @@
 
     <groupId>io.cyborgcode.roa.plugins</groupId>
     <artifactId>plugins</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>pom</packaging>
 
     <name>Ring of Automation Plugins</name>
