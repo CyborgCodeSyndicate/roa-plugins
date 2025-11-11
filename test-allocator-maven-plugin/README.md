@@ -1,9 +1,12 @@
 # test-allocator-maven-plugin
+![JDK](https://img.shields.io/badge/JDK-17+-blue)
+![Maven](https://img.shields.io/badge/Maven-3.6+-blue)
 
 ## Table of contents
 
 - [Overview](#overview)
 - [Quick start](#quick-start)
+- [Package structure](#package-structure)
 - [Goal guide](#goal-guide)
   - [Mojo goal](#mojo-goal)
   - [Execution flow](#execution-flow)
@@ -70,6 +73,17 @@ Or wire it into your `pom.xml` so it runs every build:
 ```
 
 Switch `testEngine` to `testng` and provide `<suites>` when running TestNG suites.
+
+## Package Structure
+
+| Package | Purpose                                                                                                                                                                            |
+| --- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `io.cyborgcode.roa.maven.plugins.allocator` | Plugin entry point (`TestAllocatorMojo`)                                                                                                                                           |
+| `io.cyborgcode.roa.maven.plugins.allocator.config` | Configuration classes for JUnit/TestNG (`TestSplitterConfiguration`, `TestSplitterConfigurationJunit`, `TestSplitterConfigurationTestng`)                                                                                                                                           |
+| `io.cyborgcode.roa.maven.plugins.allocator.service` | Test allocation services that distribute test classes across execution groups. (`BaseAllocatorService`, `JunitAllocatorService`, `TestNgAllocatorService`, `TestAllocatorService`) |
+| `io.cyborgcode.roa.maven.plugins.allocator.grouping` | Bucket allocation logic (`TestBucketAllocator`, `TestBucket`)                                                                                                                      |
+| `io.cyborgcode.roa.maven.plugins.allocator.discovery` | Custom utility classes loading test classes and file discovery (`TestClassLoader`, `ClassFileDiscovery`)                                                                           |
+| `io.cyborgcode.roa.maven.plugins.allocator.filtering` | JUnit tag filtering and tag extracting (`TestMethodFilter`, `TestTagExtractor`)                                                                                                    |
 
 ## Goal guide
 
