@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.cyborgcode.utilities</groupId>
         <artifactId>parent-pom</artifactId>
-        <version>1.5.0</version>
+        <version>1.5.1</version>
     </parent>
 
     <groupId>io.cyborgcode.roa.plugins</groupId>
@@ -91,7 +91,7 @@
 
     <properties>
         <github.repo.name>roa-plugins</github.repo.name>
-        <utilities.version>1.5.0</utilities.version>
+        <utilities.version>1.5.1</utilities.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -119,20 +119,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <repository>
-            <id>github-utilities</id>
-            <name>GitHub Packages for Utilities</name>
-            <url>https://maven.pkg.github.com/CyborgCodeSyndicate/utilities</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
 
 </project>
