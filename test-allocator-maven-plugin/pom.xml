@@ -120,5 +120,19 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>github-utilities</id>
+            <name>GitHub Packages for Utilities</name>
+            <url>https://maven.pkg.github.com/CyborgCodeSyndicate/utilities</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
 
 </project>
