@@ -102,7 +102,7 @@ roa-plugins/
 <parent>
   <groupId>io.cyborgcode.utilities</groupId>
   <artifactId>parent-pom</artifactId>
-  <version>1.3.1</version>
+  <version>LATEST_VERSION</version>
 </parent>
 ```
 

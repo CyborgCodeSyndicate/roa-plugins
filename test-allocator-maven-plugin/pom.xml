@@ -4,15 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.cyborgcode.roa.plugins</groupId>
-        <artifactId>plugins</artifactId>
-        <version>1.0.4</version>
-        <relativePath>../pom.xml</relativePath>
+        <groupId>io.cyborgcode.utilities</groupId>
+        <artifactId>parent-pom</artifactId>
+        <version>1.5.0</version>
     </parent>
 
+    <groupId>io.cyborgcode.roa.plugins</groupId>
     <artifactId>test-allocator-maven-plugin</artifactId>
+    <version>1.0.4</version>
     <packaging>maven-plugin</packaging>
     <name>ROA Test Allocator Maven Plugin</name>
+    <description>Maven Plugin part of Ring of Automation that distributed parallel test execution.</description>
+
 
     <dependencies>
         <dependency>
@@ -85,6 +88,16 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <properties>
+        <github.repo.name>roa-plugins</github.repo.name>
+        <utilities.version>1.5.0</utilities.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <shared-static-data.version>${utilities.version}</shared-static-data.version>
+    </properties>
+
 
     <build>
         <plugins>
