@@ -150,3 +150,5 @@ The project includes automated CI/CD workflows:
 
 ## Author
 **Cyborg Code Syndicate 💍👨💻**
+
+Licensed under Apache-2.0
