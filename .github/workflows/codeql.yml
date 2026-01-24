@@ -22,12 +22,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Java
-        uses: actions/setup-java@v4
+      - name: Setup Maven Environment
+        uses: CyborgCodeSyndicate/utilities/pipelines/shared/setup-maven@main
         with:
-          distribution: temurin
-          java-version: "17"
-          cache: maven
+          java_version: 17
+          server_ids: github-roa-plugins
+          github_packages_user: ${{ secrets.GH_PACKAGES_USER }}
+          github_packages_token: ${{ secrets.GH_PACKAGES_PAT }}
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
