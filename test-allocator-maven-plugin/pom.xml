@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.cyborgcode.utilities</groupId>
         <artifactId>parent-pom</artifactId>
-        <version>1.5.4</version>
+        <version>1.6.0</version>
     </parent>
 
     <groupId>io.cyborgcode.roa.plugins</groupId>
@@ -91,7 +91,7 @@
 
     <properties>
         <github.repo.name>roa-plugins</github.repo.name>
-        <utilities.version>1.5.4</utilities.version>
+        <utilities.version>1.6.0</utilities.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
