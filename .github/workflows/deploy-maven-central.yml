@@ -16,7 +16,7 @@ jobs:
     steps:
       # Use the composite action to deploy to Maven Central
       - name: Deploy Plugins to Maven Central
-        uses: CyborgCodeSyndicate/utilities/pipelines/deploy-maven-central@v1.6.0
+        uses: CyborgCodeSyndicate/utilities/pipelines/deploy-maven-central@v1.6.2
         with:
           version: ${{ inputs.version }}
           # Deploy only test-allocator-maven-plugin

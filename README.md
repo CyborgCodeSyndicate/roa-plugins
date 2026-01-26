@@ -26,6 +26,9 @@ The ROA Plugins suite provides Maven-based tooling for intelligent test executio
 
 ## Structure
 
+<details>
+ <summary>Project structure</summary>
+
 The plugin ecosystem follows a modular architecture built on Maven's plugin framework:
 
 ```
@@ -51,19 +54,27 @@ roa-plugins/
 - **Standardization**: Consistent configuration and deployment patterns
 - **Security**: Built-in dependency vulnerability scanning and management
 
+</details>
+
 ## Plugins
+
+<details>
+ <summary>Available plugins</summary>
 
 | Module | Goal | Purpose | Key Features | Documentation |
 |--------|------|---------|--------------|---------------|
 | `test-allocator-maven-plugin` | `test-splitter:split` | Intelligent distribution of test classes across execution buckets | • Balanced test load distribution based on method count<br>• JUnit 5 tag filtering and TestNG suite selection<br>• Configurable parallel vs sequential execution hints<br>• JSON manifest output for CI system consumption<br>• Custom classloader for safe test class inspection | [README.md](test-allocator-maven-plugin/README.md) |
 
-### Quick Usage Example
+</details>
+
+<details>
+ <summary>Quick Usage Example</summary>
 
 ```xml
 <plugin>
   <groupId>io.cyborgcode.roa.plugins</groupId>
   <artifactId>test-allocator-maven-plugin</artifactId>
-  <version>1.0.3</version>
+  <version>RELEASE</version>
   <executions>
     <execution>
       <goals>
@@ -80,7 +91,12 @@ roa-plugins/
 </plugin>
 ```
 
+</details>
+
 ## Getting Started
+
+<details>
+ <summary>Prerequisites & Installation</summary>
 
 ### Prerequisites
 
@@ -88,25 +104,95 @@ roa-plugins/
 
 ### Installation
 
-**Option 1: Direct Maven Coordinates**
+**Direct Maven Coordinates**
 ```xml
-<dependency>
+<plugin>
   <groupId>io.cyborgcode.roa.plugins</groupId>
   <artifactId>test-allocator-maven-plugin</artifactId>
-  <version>1.0.3</version>
-</dependency>
+  <version>RELEASE</version>
+</plugin>
 ```
 
-**Option 2: Parent POM Inheritance**
-```xml
-<parent>
-  <groupId>io.cyborgcode.utilities</groupId>
-  <artifactId>parent-pom</artifactId>
-  <version>LATEST_VERSION</version>
-</parent>
-```
+</details>
+
 
 ## CI/CD Integration
+
+<details>
+ <summary>Recommended pipeline reference</summary>
+
+For a more complete pipeline example (including tests and CI conventions), check:
+https://github.com/CyborgCodeSyndicate/roa-github-workflows/blob/main/.github/workflows/roa-tests.yml
+
+</details>
+
+<details>
+ <summary>GitHub Actions: dynamic matrix example (short snippet)</summary>
+
+This snippet shows how to dynamically generate the matrix strategy based on the JSON output from the plugin. This approach starts runners based on the actual number of buckets created.
+
+```yaml
+jobs:
+  generate-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: maven
+
+      - name: Split tests (creates ci/grouped-tests.json)
+        run: mvn -q -DtestSplitter.enabled=true -DtestSplitter.json.output=ci/grouped-tests io.cyborgcode.roa.plugins:test-allocator-maven-plugin:RELEASE:split
+
+      - name: Generate matrix from JSON
+        id: set-matrix
+        run: |
+          BUCKETS=$(jq -c '[.[].jobIndex]' ci/grouped-tests.json)
+          echo "matrix={\"bucket\":${BUCKETS}}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload test buckets
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-buckets
+          path: ci/grouped-tests.json
+
+  run-tests:
+    needs: generate-matrix
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: maven
+
+      - name: Download test buckets
+        uses: actions/download-artifact@v4
+        with:
+          name: test-buckets
+          path: ci
+
+      - name: Run tests for bucket ${{ matrix.bucket }}
+        shell: bash
+        run: |
+          CLASSES=$(jq -r ".[${{ matrix.bucket }}].classes | join(',')" ci/grouped-tests.json)
+          mvn -Dtest="${CLASSES}" -DfailIfNoTests=false test
+```
+
+</details>
+
+<details>
+ <summary>Repository workflows</summary>
 
 The project includes automated CI/CD workflows:
 
@@ -128,7 +214,12 @@ The project includes automated CI/CD workflows:
 - `SONAR_TOKEN` - SonarCloud authentication
 - `NVD_API_KEY` - National Vulnerability Database API key
 
+</details>
+
 ## Dependencies
+
+<details>
+ <summary>Dependency overview</summary>
 
 **Core Framework Dependencies:**
 - Maven Plugin API and Core
@@ -147,6 +238,8 @@ The project includes automated CI/CD workflows:
 - Plexus utilities (test scope)
 
 ***Note:** All dependency versions are managed by the parent POM to ensure consistency across the Cyborg Code Syndicate ecosystem.*
+
+</details>
 
 ## Author
 **Cyborg Code Syndicate 💍👨💻**
