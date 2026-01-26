@@ -1,0 +1,63 @@
+name: Deploy to Maven Central
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to deploy (must match an existing git tag. Example: 1.0.0)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-central:
+    name: Deploy to Maven Central
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Use the composite action to deploy to Maven Central
+      - name: Deploy Plugins to Maven Central
+        uses: CyborgCodeSyndicate/utilities/pipelines/deploy-maven-central@v1.0.0-rc-1
+        with:
+          version: ${{ inputs.version }}
+          # Deploy only test-allocator-maven-plugin
+          modules: "test-allocator-maven-plugin"
+          java_version: "17"
+          maven_central_username: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          maven_central_token: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg_passphrase: ${{ secrets.GPG_PASSPHRASE }}
+      
+      - name: Create GitHub Release
+        if: success()
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: "v${{ inputs.version }}"
+          release_name: "Release v${{ inputs.version }} - Maven Central"
+          body: |
+            ## 📦 Maven Central Release
+            
+            Version `${{ inputs.version }}` has been deployed to Maven Central.
+            
+            ### Deployed Modules
+            - `io.cyborgcode.roa.plugins:test-allocator-maven-plugin:${{ inputs.version }}`
+            
+            ### Usage
+            Add the following to your `pom.xml`:
+            ```xml
+            <plugin>
+              <groupId>io.cyborgcode.roa.plugins</groupId>
+              <artifactId>test-allocator-maven-plugin</artifactId>
+              <version>${{ inputs.version }}</version>
+            <plugin>
+            ```
+            
+            ### Notes
+            - Artifacts may take up to 30 minutes to appear in Maven Central
+            - Search for artifacts: https://search.maven.org/search?q=g:io.cyborgcode.roa.plugins
+          draft: false
+          prerelease: false
