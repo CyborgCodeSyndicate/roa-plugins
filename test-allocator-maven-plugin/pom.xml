@@ -11,7 +11,7 @@
 
     <groupId>io.cyborgcode.roa.plugins</groupId>
     <artifactId>test-allocator-maven-plugin</artifactId>
-    <version>0.0.0</version>
+    <version>1.0.0-rc-1</version>
     <packaging>maven-plugin</packaging>
     <name>ROA Test Allocator Maven Plugin</name>
     <description>Maven Plugin part of Ring of Automation that distributed parallel test execution.</description>
